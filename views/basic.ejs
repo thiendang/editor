@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>True colors | Image editor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link type="text/css" href="css/colorpicker.min.css" rel="stylesheet">
+        <link type="text/css" href="css/tui-image-editor.css" rel="stylesheet">
+        <!-- <link rel="icon" type="image/png" href="http://localhost:3000/img/logoShadowHunter.png"> -->
+    </head>
+    <body>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="addImage('img/product6-blank.jpg')">Open Large Modal</button>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">True colors</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="tui-image-editor-controls">
+                        <div class="toolbar">
+                            <ul class="menu">
+                                <li class="menu-item" id="btn-download"><img src="img/icon/Download.png" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Download" class="red-tooltip" onmouseover="this.src='img/icon/Download-red.png'" onmouseout="this.src='img/icon/Download.png'"></li>
+
+                                <li class="menu-item disabled" id="btn-undo"><img src="img/icon/Undo.png" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Undo" class="red-tooltip" onmouseover="this.src='img/icon/Undo-red.png'" onmouseout="this.src='img/icon/Undo.png'"></li>
+                                <li class="menu-item disabled" id="btn-redo"><img src="img/icon/Redo.png" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Redo" class="red-tooltip" onmouseover="this.src='img/icon/Redo-red.png'" onmouseout="this.src='img/icon/Redo.png'"></li>
+                                <li class="menu-item" id="btn-remove-active-object"><img src="img/icon/Trash.png" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Delete" class="red-tooltip" onmouseover="this.src='img/icon/Trash-red.png'" onmouseout="this.src='img/icon/Trash.png'"></li>
+                                <li class="menu-item" id="btn-crop"><img id="img-crop" src="img/icon/Crop.png" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Crop" class="red-tooltip" onmouseover="this.src='img/icon/Crop-red.png'" onmouseout="this.src='img/icon/Crop.png'"></li>
+                                <li class="menu-item" id="btn-draw-line"><img src="img/icon/Draw.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Draw" class="red-tooltip" onmouseover="this.src='img/icon/Draw-red.png'" onmouseout="this.src='img/icon/Draw.png'"></li>
+                                <li class="menu-item" id="btn-draw-shape"><img src="img/icon/Shapes.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Shapes" class="red-tooltip" onmouseover="this.src='img/icon/Shapes-red.png'" onmouseout="this.src='img/icon/Shapes.png'"></li>
+                                <li class="menu-item" id="btn-text"><img src="img/icon/Text.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Text" class="red-tooltip" onmouseover="this.src='img/icon/Text-red.png'" onmouseout="this.src='img/icon/Text.png'"></li>
+                                <li class="menu-item input-wrapper" id="btn-mask-filter"><img src="img/icon/Upload-image.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Upload-Logo" class="red-tooltip" onmouseover="this.src='img/icon/Upload-image-red.png'" onmouseout="this.src='img/icon/Upload-image.png'"><input type="file" accept="image/*" id="input-mask-image-file"></li>
+                            </ul>
+                        </div>
+                        <div class="sub-menu-container" id="crop-sub-menu">
+                            <ul class="menu">
+                                <li class="menu-item" id="btn-apply-crop"><img src="img/icon/Apply.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Apply" class="red-tooltip" onmouseover="this.src='img/icon/Apply-red.png'" onmouseout="this.src='img/icon/Apply.png'"></li>
+                                <li class="menu-item" id="btn-cancel-crop"><img src="img/icon/Close.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close" class="red-tooltip" onmouseover="this.src='img/icon/Close-red.png'" onmouseout="this.src='img/icon/Close.png'"></li>
+                            </ul>
+                        </div>
+                        <div class="sub-menu-container menu" id="draw-line-sub-menu">
+                            <ul class="menu">
+                                <li class="menu-item">
+                                    <label><input type="radio" name="select-line-type" value="freeDrawing" checked="checked"><img src="img/icon/Paint.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Free drawing" class="red-tooltip" onmouseover="this.src='img/icon/Paint-red.png'" onmouseout="this.src='img/icon/Paint.png'"></label>
+                                    <label><input type="radio" name="select-line-type" value="lineDrawing"><img src="img/icon/Line.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Straight line" class="red-tooltip" onmouseover="this.src='img/icon/Line-red.png'" onmouseout="this.src='img/icon/Line.png'"></label>
+                                </li>
+                                <li class="menu-item">
+                                    <div id="tui-brush-color-picker">Brush color</div>
+                                </li>
+                                <li class="menu-item"><label class="menu-item no-pointer">Brush width<input id="input-brush-width-range" type="range" min="5" max="30" value="12"></label></li>
+                                <li class="menu-item close"><img src="img/icon/Close.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close" class="red-tooltip" onmouseover="this.src='img/icon/Close-red.png'" onmouseout="this.src='img/icon/Close.png'"></li>
+                            </ul>
+                        </div>
+                        <div class="sub-menu-container" id="draw-shape-sub-menu">
+                            <ul class="menu">
+                                <li class="menu-item">
+                                    <label><input type="radio" name="select-shape-type" value="rect" checked="checked"><img src="img/icon/Square.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Square" class="red-tooltip" onmouseover="this.src='img/icon/Square-red.png'" onmouseout="this.src='img/icon/Square.png'"></label>
+                                    <label><input type="radio" name="select-shape-type" value="circle"><img src="img/icon/Circle.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Circle" class="red-tooltip" onmouseover="this.src='img/icon/Circle-red.png'" onmouseout="this.src='img/icon/Circle.png'"></label>
+                                    <label><input type="radio" name="select-shape-type" value="triangle"><img src="img/icon/Triangle.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Triangle" class="red-tooltip" onmouseover="this.src='img/icon/Triangle-red.png'" onmouseout="this.src='img/icon/Triangle.png'"></label>
+                                </li>
+                                <li class="menu-item">
+                                    <select name="select-color-type">
+                                        <option value="fill">Fill</option>
+                                        <option value="stroke">Stroke</option>
+                                    </select>
+                                    <label><input type="checkbox" id="input-check-transparent">transparent</label>
+                                    <div id="tui-shape-color-picker"></div>
+                                </li>
+                                <li class="menu-item"><label class="menu-item no-pointer">Stroke width<input id="input-stroke-width-range" type="range" min="0" max="300" value="6"></label></li>
+                                <li class="menu-item close"><img src="img/icon/Close.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close" class="red-tooltip" onmouseover="this.src='img/icon/Close-red.png'" onmouseout="this.src='img/icon/Close.png'"></li>
+                            </ul>
+                        </div>
+                        <div class="sub-menu-container" id="icon-sub-menu">
+                            <ul class="menu">
+                                <li class="menu-item">
+                                    <div id="tui-icon-color-picker">Icon color</div>
+                                </li>
+                                <li class="menu-item border" id="btn-register-icon">Register custom icon</li>
+                                <li class="menu-item icon-text" data-icon-type="arrow">➡</li>
+                                <li class="menu-item icon-text" data-icon-type="cancel">✖</li>
+                                <li class="menu-item close"><img src="img/icon/Close.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close" class="red-tooltip" onmouseover="this.src='img/icon/Close-red.png'" onmouseout="this.src='img/icon/Close.png'"></li>
+                            </ul>
+                        </div>
+                        <div class="sub-menu-container" id="text-sub-menu">
+                            <ul class="menu">
+                                <li class="menu-item">
+                                    <div>
+                                        <button class="btn-text-style" data-style-type="b"><img src="img/icon/Bold.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Bold" class="red-tooltip" onmouseover="this.src='img/icon/Bold-red.png'" onmouseout="this.src='img/icon/Bold.png'"></button>
+                                        <button class="btn-text-style" data-style-type="i"><img src="img/icon/Italic.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Italic" class="red-tooltip" onmouseover="this.src='img/icon/Italic-red.png'" onmouseout="this.src='img/icon/Italic.png'"></button>
+                                        <button class="btn-text-style" data-style-type="u"><img src="img/icon/Underline.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Underline" class="red-tooltip" onmouseover="this.src='img/icon/Underline-red.png'" onmouseout="this.src='img/icon/Underline.png'"></button>
+                                    <!-- </div>
+                                    <div> -->
+                                        <button class="btn-text-style" data-style-type="l"><img src="img/icon/Align-left.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Align-left" class="red-tooltip" onmouseover="this.src='img/icon/Align-left-red.png'" onmouseout="this.src='img/icon/Align-left.png'"></button>
+                                        <button class="btn-text-style" data-style-type="c"><img src="img/icon/Center.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Center" class="red-tooltip" onmouseover="this.src='img/icon/Center-red.png'" onmouseout="this.src='img/icon/Center.png'"></button>
+                                        <button class="btn-text-style" data-style-type="r"><img src="img/icon/Align-right.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Align-right" class="red-tooltip" onmouseover="this.src='img/icon/Align-right-red.png'" onmouseout="this.src='img/icon/Align-right.png'"></button>
+                                    </div>
+                                </li>
+                                <!-- <li class="menu-item"><label class="no-pointer">Font size<input id="input-font-size-range" type="range" min="10" max="100" value="10"></label></li> -->
+                                <li class="menu-item">
+                                    <div id="tui-text-color-picker">Choose color</div>
+                                </li>
+                                <li class="menu-item close"><img src="img/icon/Close.png" title="" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close" class="red-tooltip" onmouseover="this.src='img/icon/Close-red.png'" onmouseout="this.src='img/icon/Close.png'"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tui-image-editor"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.4/fabric.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+        <script type="text/javascript" src="https://cdn.rawgit.com/nhnent/tui.code-snippet/1.2.1/code-snippet.js"></script>
+        <script type="text/javascript" src="js/colorpicker.min.js"></script>
+        <script type="text/javascript" src="js/tui-image-editor.js"></script>
+        <script type="text/javascript" src="js/basic.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("img").tooltip();
+                $('#myModal').modal({backdrop: 'static', keyboard: false, show: false});
+            });
+        </script>
+    </body>
+</html>
