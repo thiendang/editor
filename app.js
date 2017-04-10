@@ -74,7 +74,7 @@ app.use(function(req, res, next) {
 });
 
 // SET PORT
-app.set('port', (process.env.PORT || 3030));
+app.set('port', (process.env.PORT || 9000));
 
 app.listen(app.get('port'), function () {
 	// body...
