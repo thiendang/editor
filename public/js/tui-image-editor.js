@@ -1,9 +1,3 @@
-/*!
- * tui-image-editor.js
- * @version 1.4.1
- * @author NHNEnt FE Development Lab <dl_javascript@nhnent.com>
- * @license MIT
- */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -2189,7 +2183,7 @@
 /* 4 */
 /***/ function(module, exports) {
 
-	
+
 
 /***/ },
 /* 5 */
@@ -2400,7 +2394,7 @@
 	$export.B = 16;  // bind
 	$export.W = 32;  // wrap
 	$export.U = 64;  // safe
-	$export.R = 128; // real proto method for `library` 
+	$export.R = 128; // real proto method for `library`
 	module.exports = $export;
 
 /***/ },

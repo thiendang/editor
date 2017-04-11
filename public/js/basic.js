@@ -1,10 +1,5 @@
-/**
- * basic.js
- * @author NHN Ent. FE Development Team <dl_javascript@nhnent.com>
- * @fileoverview
- */
-'use strict'; 
-  
+'use strict';
+
 var supportingFileAPI = !!(window.File && window.FileList && window.FileReader);
 var rImageType = /data:(image\/.+);base64,/;
 var shapeOptions = {};
@@ -659,13 +654,6 @@ $btnLoadMaskImage.on('change', function() {
 $btnApplyMask.on('click', function() {
     imageEditor.applyFilter('mask');
 });
-
-// Etc..
-
-// Load sample image
-// imageEditor.loadImageFromURL('img/product5-blank.png', 'SampleImage');
-// var img = 'img/product6-blank.jpg'
-// imageEditor.loadImageFromURL(img, 'SampleImage');
 
 function addImage(img) {
     imageEditor.loadImageFromURL(img, 'SampleImage');

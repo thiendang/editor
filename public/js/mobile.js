@@ -1,9 +1,4 @@
-/**
- * mobile.js
- * @author NHN Ent. FE Development Team <dl_javascript@nhnent.com>
- * @fileoverview
- */
-/* eslint-disable vars-on-top */
+
 'use strict';
 
 var MAX_RESOLUTION = 3264 * 2448; // 8MP (Mega Pixel)
